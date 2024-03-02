@@ -14,3 +14,5 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "Breadth_recommendation.settings")
 
 application = get_wsgi_application()
+def handler(request, context):
+    return application(request)
