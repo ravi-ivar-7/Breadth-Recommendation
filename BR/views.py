@@ -43,7 +43,7 @@ def sign_up(request):
                     user = form.save(commit=False)
                     user.username = erp_reg_email 
                     user.save()
-                    redirect('/account')
+                    return redirect('/account')
 
                 except Exception as e:
                     messages.error(request, f'An error occurred while trying to create your account.[{e}]')
