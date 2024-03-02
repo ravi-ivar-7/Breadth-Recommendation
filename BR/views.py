@@ -17,12 +17,12 @@ from django.db.models import Q
 
 def vs_home(request):
 
-    return render(request,'home.html',)
+    return redirect('register')
 
 def home(request):
     user_profile = None
    
-    return render(request,'home.html')
+    return redirect('register')
 
 def sign_up(request):
     if request.method == 'GET':
