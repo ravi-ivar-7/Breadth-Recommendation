@@ -11,6 +11,106 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
 
 	    <link rel="stylesheet" href="/static/css/style.css">
+
+      <style>
+        /* Style for form labels */
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style for select dropdown */
+        select {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Style for buttons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+
+
+
+        /* Style for form labels */
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style for checkboxes */
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        input[type="checkbox"] + label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] + label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            background-color: #fff;
+        }
+
+        input[type="checkbox"]:checked + label:before {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        input[type="checkbox"] + label:after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            width: 6px;
+            height: 12px;
+            border: solid #fff;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+            display: none;
+        }
+
+        input[type="checkbox"]:checked + label:after {
+            display: block;
+        }
+
+        /* Style for submit button */
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
@@ -128,10 +228,20 @@
                 <td width="2%">:</td>
                 <td>2020</td>
               </tr>
-           
-              
-              
             </table>
+     <!-- Display the Combined Form -->
+     <form method="post">
+      {% csrf_token %}
+      <label>Choose a session:</label><br>
+      {{ combined_form.session }}<br>
+      <label>Choose a category:</label><br>
+      {{ combined_form.category }}<br>
+      <label>Select your personal interests:</label><br>
+      {{ combined_form.personal_interests }}<br>
+      <button type="submit">Submit</button>
+  </form>
+              
+            
           </div>
         </div>
       </div>

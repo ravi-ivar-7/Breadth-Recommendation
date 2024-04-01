@@ -86,20 +86,19 @@ def sign_out(request):
 
 @login_required(login_url='/login')
 def account(request):
-    if request.user.is_authenticated:
-        try:
-            user_profile = request.user
-          
-            context = {
-               'email':user_profile.email,
-            }
-            print(user_profile.email)
-        except UserProfile.DoesNotExist:
-            print('does not exit')
+    if request.method == 'POST':
+        # If the form is submitted
+        combined_form = CombinedForm(request.POST)
+        if combined_form.is_valid():
+            # Process the combined form data
+            session = combined_form.cleaned_data['session']
+            category = combined_form.cleaned_data['category']
+            personal_interests = combined_form.cleaned_data['personal_interests']
+            # Do something with the collected data
 
-            context = {}
+            # Redirect or return response after processing the form data
+            return HttpResponse("Form submitted successfully!")
     else:
-        print('login')
-        context = {}
-    
-    return render(request, 'account.html', context)
+        # If it's a GET request, render the form page
+        combined_form = CombinedForm()
+        return render(request, 'account.html', {'combined_form': combined_form})

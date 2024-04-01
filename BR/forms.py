@@ -29,46 +29,75 @@ class RegisterForm(UserCreationForm):
 
 class SessionForm(forms.Form):
     SESSION_CHOICES = [
-        ('Autumn 18', 'Autumn 18'),
-        ('Spring 19', 'Spring 19'),
-        ('Autumn 19', 'Autumn 19'),
-        ('Spring 20', 'Spring 20'),
-        ('Autumn 20', 'Autumn 20'),
-        ('Spring 21', 'Spring 21'),
-        ('Autumn 21', 'Autumn 21'),
-        ('Spring 22', 'Spring 22'),
-        ('Autumn 22', 'Autumn 22'),
-        ('t_session', 't_session'),
-        ('Autumn 23', 'Autumn 23'),
+       
     ]
-    session = forms.ChoiceField(choices=[(str(index), session) for index, session in enumerate(SESSION_CHOICES, start=1)], label='Choose a session')
+    session = forms.ChoiceField(choices=SESSION_CHOICES, widget=forms.RadioSelect)
+    
 
 class CategoryForm(forms.Form):
     CATEGORY_CHOICES = [
-        ('Aerospace Engineering_related_roles', 'Aerospace Engineering related roles'),
-        ('Artificial Intelligence_related_roles', 'Artificial Intelligence related roles'),
-        ('Other_related_roles', 'Other related roles'),
-        ('Humanities and Social Science_related_roles', 'Humanities and Social Science related roles'),
-        ('Mathematics_related_roles', 'Mathematics related roles'),
-        ('Industrial and Systems Engineering_related_roles', 'Industrial and Systems Engineering related roles'),
-        ('Computer Science_related_roles', 'Computer Science related roles'),
-        ('Mechanical Engineering_related_roles', 'Mechanical Engineering related roles'),
-        ('Electrical Engineering_related_roles', 'Electrical Engineering related roles'),
-        ('Agriculture Engineering_related_roles', 'Agriculture Engineering related roles'),
-        ('Architecture and Planning_related_roles', 'Architecture and Planning related roles'),
-        ('Biotechnology_related_roles', 'Biotechnology related roles'),
-        ('Environmental Science_related_roles', 'Environmental Science related roles'),
-        ('Civil Engineering_related_roles', 'Civil Engineering related roles'),
-        ('Geology and Geophysics_related_roles', 'Geology and Geophysics related roles'),
-        ('Chemical Engineering_related_roles', 'Chemical Engineering related roles'),
-        ('Chemistry_related_roles', 'Chemistry related roles'),
-        ('Physics_related_roles', 'Physics related roles'),
-        ('Metallurgical and Materials Engineering_related_roles', 'Metallurgical and Materials Engineering related roles'),
-        ('Mining Engineering_related_roles', 'Mining Engineering related roles'),
-        ('Ocean Engineering and Naval Architecture_related_roles', 'Ocean Engineering and Naval Architecture related roles'),
+       
     ]
-    category = forms.ChoiceField(choices=[(str(index), name) for index, (value, name) in enumerate(CATEGORY_CHOICES, start=1)], label='Choose a category')
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.RadioSelect)
 
+
+
+
+
+class CombinedForm(forms.Form):
+    SESSION_CHOICES = [
+        (1, 'Autumn 18'),
+        (2, 'Spring 19'),
+        (3, 'Autumn 19'),
+        (4, 'Spring 20'),
+        (5, 'Autumn 20'),
+        (6, 'Spring 21'),
+        (7, 'Autumn 21'),
+        (8, 'Spring 22'),
+        (9, 'Autumn 22'),
+        (10, 't_session'),
+        (11, 'Autumn 23'),
+    ]
+    session = forms.ChoiceField(choices=SESSION_CHOICES, widget=forms.RadioSelect)
+
+    CATEGORY_CHOICES = [
+         (1, 'Aerospace Engineering related roles'),
+        (2, 'Artificial Intelligence related roles'),
+        (3, 'Other related roles'),
+        (4, 'Humanities and Social Science related roles'),
+        (5, 'Mathematics related roles'),
+        (6, 'Industrial and Systems Engineering related roles'),
+        (7, 'Computer Science related roles'),
+        (8, 'Mechanical Engineering related roles'),
+        (9, 'Electrical Engineering related roles'),
+        (10, 'Agriculture Engineering related roles'),
+        (11, 'Architecture and Planning related roles'),
+        (12, 'Biotechnology related roles'),
+        (13, 'Environmental Science related roles'),
+        (14, 'Civil Engineering related roles'),
+        (15, 'Geology and Geophysics related roles'),
+        (16, 'Chemical Engineering related roles'),
+        (17, 'Chemistry related roles'),
+        (18, 'Physics related roles'),
+        (19, 'Metallurgical and Materials Engineering related roles'),
+        (20, 'Mining Engineering related roles'),
+        (21, 'Ocean Engineering and Naval Architecture related roles'),
+    ]
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, widget=forms.RadioSelect)
+
+    INTEREST_CHOICES = [
+        (2, 'Specialized Topics'),
+        (3, 'Competitive Programming for IT'),
+        (4, 'Computer Architecture and Operating Systems'),
+        (6, 'Programming and Software Engineering'),
+        (7, 'Networking and Databases'),
+        (8, 'Programming and Software Engineering; Networking and Databases'),
+    ]
+    personal_interests = forms.MultipleChoiceField(
+        choices=INTEREST_CHOICES,
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
 
 # class ProfileForm(forms.ModelForm):
 #     class Meta:
